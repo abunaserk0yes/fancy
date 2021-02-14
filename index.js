@@ -24,6 +24,8 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
+    toggleSpinner(false)
+    
   })
 
 }
@@ -68,7 +70,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  document.getElementById('duration').value || 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -116,6 +118,7 @@ document.getElementById('search').addEventListener('keypress',function(event){
     }
 })
 searchBtn.addEventListener('click', function () {
+  toggleSpinner(true);
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
@@ -126,3 +129,13 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+const toggleSpinner=(show)=>{
+  const spinner=document.getElementById('spinner')
+  if (show) {
+    spinner.classList.remove('d-none')
+  }
+  else{
+    spinner.classList.add('d-none')
+  }
+}
