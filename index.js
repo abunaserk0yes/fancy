@@ -45,7 +45,7 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item ===-1) {
     console.log(item)
-    sliders.push(img);
+    sliders.toggle(img);
   } else {
     sliders.slice(item,1)
   }
